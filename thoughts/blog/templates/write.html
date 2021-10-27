@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+
+{%block body%}
+
+	{% if msg%}
+		{{msg}}
+	{%endif%}
+		<center>
+			<h2>Your thoughts..</h2>
+			<form method= "post" action="/blog/post/">
+				<textarea name= "title" rows="2" cols="50" placeholder="Title of you post" required></textarea><br>
+				<br>
+				<textarea name= "body" rows="10" cols="50" placeholder="Write your thought here"  required></textarea><br><br>
+				<button type = "submit">Post</buttom> 
+				</form>
+		</center>
+
+
+
+{%endblock%}
+

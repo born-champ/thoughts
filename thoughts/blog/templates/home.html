@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+
+
+{%block body%}
+
+	<div class="container" style="margin: 3%;">
+
+		{%for blog in blogs%}
+			<h4>{{blog.title}}</h4>
+			<p>
+				{{blog.body}}
+			</p>
+			<hr>
+		{%endfor%}
+	</div>
+
+
+{%endblock%}
+
