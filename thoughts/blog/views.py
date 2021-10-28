@@ -22,7 +22,6 @@ def home(request, *arg, **kwargs):
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context, request))
 
-@csrf_exempt
 def post(request, *arg, **kwargs):
 	page = ""
 	template = loader.get_template('write.html')
