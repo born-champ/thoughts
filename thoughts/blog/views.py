@@ -13,12 +13,19 @@ def home(request, *arg, **kwargs):
 
 	start = (page-1)*page_count
 	end = page_count*page
-
+	count = Blog.objects.all().count()//page_count +1
 	blogs = Blog.objects.all()[start:end]
 	context={
-	"blogs":blogs
+	"blogs":blogs,
+	"cur":page
 	}
-
+	if page<count:
+		context["last"]:count
+		context["next"]:page+1
+	if page > 1:
+		context["pre"]:page-1
+		context['first']:1
+	print(context)
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context, request))
 
@@ -46,3 +53,20 @@ def post(request, *arg, **kwargs):
 	else:
 		context = dict()
 		return HttpResponse(template.render(context,request))
+
+
+		# {%if first%}
+		# 	<a  href=/?page={{first}}>first</a>
+		# {%endif}
+
+		# {%if pre%}
+		# 	<a  href=/?page={{pre}}>{{pre}}</a>
+		# {%endif}
+
+		# {%if next%}
+		# 	<a  href=/?page={{next}}>{{next}}</a>
+		# {%endif}
+		
+		# {%if last%}
+		# 	<a  href=/?page={{last}}>last</a>
+		# {%endif}
