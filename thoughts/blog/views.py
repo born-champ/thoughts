@@ -53,20 +53,3 @@ def post(request, *arg, **kwargs):
 	else:
 		context = dict()
 		return HttpResponse(template.render(context,request))
-
-
-		# {%if first%}
-		# 	<a  href=/?page={{first}}>first</a>
-		# {%endif}
-
-		# {%if pre%}
-		# 	<a  href=/?page={{pre}}>{{pre}}</a>
-		# {%endif}
-
-		# {%if next%}
-		# 	<a  href=/?page={{next}}>{{next}}</a>
-		# {%endif}
-		
-		# {%if last%}
-		# 	<a  href=/?page={{last}}>last</a>
-		# {%endif}
