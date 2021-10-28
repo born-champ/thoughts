@@ -13,16 +13,22 @@ def home(request, *arg, **kwargs):
 
 	start = (page-1)*page_count
 	end = page_count*page
-
+	count = Blog.objects.all().count()//page_count +1
 	blogs = Blog.objects.all()[start:end]
 	context={
-	"blogs":blogs
+	"blogs":blogs,
+	"cur":page
 	}
-
+	if page<count:
+		context["last"]:count
+		context["next"]:page+1
+	if page > 1:
+		context["pre"]:page-1
+		context['first']:1
+	print(context)
 	template = loader.get_template('home.html')
 	return HttpResponse(template.render(context, request))
 
-@csrf_exempt
 def post(request, *arg, **kwargs):
 	page = ""
 	template = loader.get_template('write.html')
